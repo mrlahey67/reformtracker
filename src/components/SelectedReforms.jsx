@@ -1,4 +1,4 @@
-import { formatPersons, formatMia, kategoriFarve } from '../utils/calculations.js'
+import { formatPersonsSigned, formatMiaSigned, kategoriFarve } from '../utils/calculations.js'
 
 export default function SelectedReforms({ valgteReformer, onToggle, onRydAlle }) {
   if (valgteReformer.length === 0) {
@@ -36,8 +36,12 @@ export default function SelectedReforms({ valgteReformer, onToggle, onRydAlle })
             <span className="flex-1 truncate text-ink" title={r.titel}>
               {r.titel}
             </span>
-            <span className="num text-ink-muted shrink-0">
-              +{formatPersons(r.arbejdsudbud_fuldtidspersoner)}
+            <span
+              className={`num shrink-0 ${
+                r.arbejdsudbud_fuldtidspersoner < 0 ? 'text-rose-700' : 'text-ink-muted'
+              }`}
+            >
+              {formatPersonsSigned(r.arbejdsudbud_fuldtidspersoner)}
             </span>
             {typeof r.provenu_mia_kr === 'number' && (
               <span
@@ -45,7 +49,7 @@ export default function SelectedReforms({ valgteReformer, onToggle, onRydAlle })
                   r.provenu_mia_kr >= 0 ? 'text-emerald-700' : 'text-rose-700'
                 }`}
               >
-                {r.provenu_mia_kr > 0 ? '+' : ''}{formatMia(r.provenu_mia_kr)}
+                {formatMiaSigned(r.provenu_mia_kr)}
               </span>
             )}
             <button

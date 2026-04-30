@@ -19,9 +19,21 @@ export function formatPersons(n) {
   return formatNumber(n, { decimals: 0 })
 }
 
+export function formatPersonsSigned(n) {
+  if (n === null || n === undefined) return '—'
+  const sign = n >= 0 ? '+' : '−'
+  return `${sign}${formatNumber(Math.abs(n), { decimals: 0 })}`
+}
+
 export function formatMia(n) {
   if (n === null || n === undefined) return '—'
   const sign = n >= 0 ? '' : '−'
+  return `${sign}${formatNumber(Math.abs(n), { decimals: 1 })} mia. kr`
+}
+
+export function formatMiaSigned(n) {
+  if (n === null || n === undefined) return '—'
+  const sign = n >= 0 ? '+' : '−'
   return `${sign}${formatNumber(Math.abs(n), { decimals: 1 })} mia. kr`
 }
 
@@ -39,6 +51,7 @@ export const KATEGORI_FARVER = {
   'Uddannelse og unge': '#0E7490',
   'Skat og incitamenter': '#B45309',
   'Kontanthjælp og aktivering': '#BE123C',
+  'Omfordeling og tidlig tilbagetrækning': '#155E75',
 }
 
 export function kategoriFarve(kategori) {

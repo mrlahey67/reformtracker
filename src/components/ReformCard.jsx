@@ -1,4 +1,4 @@
-import { formatPersons, formatMia, kategoriFarve } from '../utils/calculations.js'
+import { formatPersonsSigned, formatMia, formatMiaSigned, kategoriFarve } from '../utils/calculations.js'
 
 export default function ReformCard({ reform, valgt, onToggle, onOpen }) {
   const farve = kategoriFarve(reform.kategori)
@@ -50,23 +50,39 @@ export default function ReformCard({ reform, valgt, onToggle, onOpen }) {
         <dl className="flex gap-5 text-[12px]">
           <div>
             <dt className="text-ink-soft">Arbejdsudbud</dt>
-            <dd className="font-semibold num text-ink">
-              {effektUkendt ? '—' : `+${formatPersons(reform.arbejdsudbud_fuldtidspersoner)}`}
+            <dd
+              className={`font-semibold num ${
+                effektUkendt
+                  ? 'text-ink'
+                  : reform.arbejdsudbud_fuldtidspersoner < 0
+                  ? 'text-rose-700'
+                  : 'text-ink'
+              }`}
+            >
+              {effektUkendt ? '—' : formatPersonsSigned(reform.arbejdsudbud_fuldtidspersoner)}
             </dd>
           </div>
           {typeof reform.bnp_mia_kr === 'number' && (
             <div>
               <dt className="text-ink-soft">BNP</dt>
-              <dd className="font-semibold num text-ink">
-                +{formatMia(reform.bnp_mia_kr)}
+              <dd
+                className={`font-semibold num ${
+                  reform.bnp_mia_kr < 0 ? 'text-rose-700' : 'text-ink'
+                }`}
+              >
+                {formatMiaSigned(reform.bnp_mia_kr)}
               </dd>
             </div>
           )}
           {typeof reform.provenu_mia_kr === 'number' && (
             <div>
               <dt className="text-ink-soft">Provenu</dt>
-              <dd className="font-semibold num text-ink">
-                {reform.provenu_mia_kr > 0 ? '+' : ''}{formatMia(reform.provenu_mia_kr)}
+              <dd
+                className={`font-semibold num ${
+                  reform.provenu_mia_kr < 0 ? 'text-rose-700' : 'text-ink'
+                }`}
+              >
+                {formatMiaSigned(reform.provenu_mia_kr)}
               </dd>
             </div>
           )}

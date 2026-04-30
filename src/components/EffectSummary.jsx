@@ -1,4 +1,4 @@
-import { formatPersons, formatMia } from '../utils/calculations.js'
+import { formatPersonsSigned, formatMiaSigned } from '../utils/calculations.js'
 
 function Kpi({ label, value, sekundært, tone = 'default' }) {
   const toneClass = {
@@ -20,26 +20,32 @@ function Kpi({ label, value, sekundært, tone = 'default' }) {
   )
 }
 
+function tone(n) {
+  if (n > 0) return 'positive'
+  if (n < 0) return 'negative'
+  return 'default'
+}
+
 export default function EffectSummary({ sumArbejdsudbud, sumBnp, sumProvenu, antalMedBnp, antalMedProvenu, antalValgt }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
       <Kpi
         label="Samlet arbejdsudbud"
-        value={antalValgt ? `+${formatPersons(sumArbejdsudbud)}` : '—'}
+        value={antalValgt ? formatPersonsSigned(sumArbejdsudbud) : '—'}
         sekundært="fuldtidspersoner"
-        tone="positive"
+        tone={tone(sumArbejdsudbud)}
       />
       <Kpi
         label="BNP-effekt"
-        value={antalValgt ? `+${formatMia(sumBnp)}` : '—'}
+        value={antalValgt ? formatMiaSigned(sumBnp) : '—'}
         sekundært={`baseret på ${antalMedBnp} af ${antalValgt} reformer`}
-        tone="positive"
+        tone={tone(sumBnp)}
       />
       <Kpi
         label="Provenu-effekt"
-        value={antalValgt ? `${sumProvenu >= 0 ? '+' : ''}${formatMia(sumProvenu)}` : '—'}
+        value={antalValgt ? formatMiaSigned(sumProvenu) : '—'}
         sekundært={`baseret på ${antalMedProvenu} af ${antalValgt} reformer`}
-        tone={sumProvenu >= 0 ? 'positive' : 'negative'}
+        tone={tone(sumProvenu)}
       />
     </div>
   )

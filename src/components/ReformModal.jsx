@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { formatPersons, formatMia, kategoriFarve } from '../utils/calculations.js'
+import { formatPersonsSigned, formatMiaSigned, kategoriFarve } from '../utils/calculations.js'
 
 export default function ReformModal({ reform, valgt, onClose, onToggle }) {
   useEffect(() => {
@@ -56,21 +56,39 @@ export default function ReformModal({ reform, valgt, onClose, onToggle }) {
           <div className="mt-5 grid grid-cols-3 gap-3">
             <div className="rounded border border-rule px-3 py-2">
               <div className="text-[11px] uppercase text-ink-soft">Arbejdsudbud</div>
-              <div className="text-lg font-semibold num">
-                {effektUkendt ? '—' : `+${formatPersons(reform.arbejdsudbud_fuldtidspersoner)}`}
+              <div
+                className={`text-lg font-semibold num ${
+                  !effektUkendt && reform.arbejdsudbud_fuldtidspersoner < 0
+                    ? 'text-rose-700'
+                    : ''
+                }`}
+              >
+                {effektUkendt ? '—' : formatPersonsSigned(reform.arbejdsudbud_fuldtidspersoner)}
               </div>
             </div>
             <div className="rounded border border-rule px-3 py-2">
               <div className="text-[11px] uppercase text-ink-soft">BNP</div>
-              <div className="text-lg font-semibold num">
-                {typeof reform.bnp_mia_kr === 'number' ? `+${formatMia(reform.bnp_mia_kr)}` : '—'}
+              <div
+                className={`text-lg font-semibold num ${
+                  typeof reform.bnp_mia_kr === 'number' && reform.bnp_mia_kr < 0
+                    ? 'text-rose-700'
+                    : ''
+                }`}
+              >
+                {typeof reform.bnp_mia_kr === 'number' ? formatMiaSigned(reform.bnp_mia_kr) : '—'}
               </div>
             </div>
             <div className="rounded border border-rule px-3 py-2">
               <div className="text-[11px] uppercase text-ink-soft">Provenu</div>
-              <div className="text-lg font-semibold num">
+              <div
+                className={`text-lg font-semibold num ${
+                  typeof reform.provenu_mia_kr === 'number' && reform.provenu_mia_kr < 0
+                    ? 'text-rose-700'
+                    : ''
+                }`}
+              >
                 {typeof reform.provenu_mia_kr === 'number'
-                  ? `${reform.provenu_mia_kr > 0 ? '+' : ''}${formatMia(reform.provenu_mia_kr)}`
+                  ? formatMiaSigned(reform.provenu_mia_kr)
                   : '—'}
               </div>
             </div>

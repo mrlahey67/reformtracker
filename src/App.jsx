@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import reformer from './data/reforms.json'
+import pakker from './data/pakker.json'
 import ReformCatalog from './components/ReformCatalog.jsx'
 import SelectedReforms from './components/SelectedReforms.jsx'
 import EffectSummary from './components/EffectSummary.jsx'
@@ -7,41 +8,47 @@ import EffectChart from './components/EffectChart.jsx'
 import ReformModal from './components/ReformModal.jsx'
 import MetodeModal from './components/MetodeModal.jsx'
 import Pakker from './components/Pakker.jsx'
+import SammenligningsVælger from './components/SammenligningsVælger.jsx'
 import { sumEffect } from './utils/calculations.js'
 
 const REFORM_IDS = new Set(reformer.map((r) => r.id))
+const PAKKE_IDS = new Set(pakker.map((p) => p.id))
 
-function læsIdsFraUrl() {
-  if (typeof window === 'undefined') return []
+function læsFraUrl() {
+  if (typeof window === 'undefined') return { ids: [], cmp: null }
   const params = new URLSearchParams(window.location.search)
   const r = params.get('r')
-  if (!r) return []
-  return r.split(',').filter((id) => REFORM_IDS.has(id))
+  const cmp = params.get('cmp')
+  return {
+    ids: r ? r.split(',').filter((id) => REFORM_IDS.has(id)) : [],
+    cmp: cmp && PAKKE_IDS.has(cmp) ? cmp : null,
+  }
 }
 
-function skrivIdsTilUrl(ids) {
+function skrivTilUrl(ids, cmp) {
   if (typeof window === 'undefined') return
   const params = new URLSearchParams(window.location.search)
-  if (ids.length > 0) {
-    params.set('r', ids.join(','))
-  } else {
-    params.delete('r')
-  }
+  if (ids.length > 0) params.set('r', ids.join(','))
+  else params.delete('r')
+  if (cmp) params.set('cmp', cmp)
+  else params.delete('cmp')
   const qs = params.toString()
   const newUrl = `${window.location.pathname}${qs ? '?' + qs : ''}${window.location.hash}`
   window.history.replaceState({}, '', newUrl)
 }
 
 export default function App() {
-  const [valgteIds, setValgteIds] = useState(() => læsIdsFraUrl())
+  const initial = useMemo(() => læsFraUrl(), [])
+  const [valgteIds, setValgteIds] = useState(initial.ids)
+  const [sammenligningId, setSammenligningId] = useState(initial.cmp)
   const [åbenReform, setÅbenReform] = useState(null)
   const [åbenMetode, setÅbenMetode] = useState(false)
   const [delingsBesked, setDelingsBesked] = useState(null)
 
   // Sync state -> URL (replaceState, ingen history-spam)
   useEffect(() => {
-    skrivIdsTilUrl(valgteIds)
-  }, [valgteIds])
+    skrivTilUrl(valgteIds, sammenligningId)
+  }, [valgteIds, sammenligningId])
 
   function toggleReform(id) {
     setValgteIds((prev) =>
@@ -91,6 +98,29 @@ export default function App() {
   const sumProvenu = sumEffect(valgteReformer, 'provenu_mia_kr')
   const antalMedBnp = valgteReformer.filter((r) => typeof r.bnp_mia_kr === 'number').length
   const antalMedProvenu = valgteReformer.filter((r) => typeof r.provenu_mia_kr === 'number').length
+
+  // Sammenligningspakke
+  const sammenligningsPakke = useMemo(
+    () => pakker.find((p) => p.id === sammenligningId) ?? null,
+    [sammenligningId],
+  )
+  const sammenligningsReformer = useMemo(() => {
+    if (!sammenligningsPakke) return []
+    return sammenligningsPakke.reform_ids
+      .map((id) => reformer.find((r) => r.id === id))
+      .filter(
+        (r) => r && typeof r.arbejdsudbud_fuldtidspersoner === 'number',
+      )
+  }, [sammenligningsPakke])
+  const sammenligningsSums = useMemo(() => {
+    if (!sammenligningsPakke) return null
+    return {
+      navn: sammenligningsPakke.navn,
+      arbejdsudbud: sumEffect(sammenligningsReformer, 'arbejdsudbud_fuldtidspersoner'),
+      bnp: sumEffect(sammenligningsReformer, 'bnp_mia_kr'),
+      provenu: sumEffect(sammenligningsReformer, 'provenu_mia_kr'),
+    }
+  }, [sammenligningsPakke, sammenligningsReformer])
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -158,9 +188,15 @@ export default function App() {
 
           <div className="lg:col-span-7 flex flex-col min-h-0 space-y-4 overflow-y-auto pr-1">
             <div>
-              <h2 className="text-lg font-semibold text-ink mb-3">
-                Din reformpakke
-              </h2>
+              <div className="flex items-baseline justify-between mb-3 gap-3 flex-wrap">
+                <h2 className="text-lg font-semibold text-ink">
+                  Din reformpakke
+                </h2>
+                <SammenligningsVælger
+                  valgtId={sammenligningId}
+                  onVælg={setSammenligningId}
+                />
+              </div>
               <EffectSummary
                 sumArbejdsudbud={sumArbejdsudbud}
                 sumBnp={sumBnp}
@@ -168,6 +204,7 @@ export default function App() {
                 antalMedBnp={antalMedBnp}
                 antalMedProvenu={antalMedProvenu}
                 antalValgt={valgteReformer.length}
+                sammenligning={sammenligningsSums}
               />
             </div>
 

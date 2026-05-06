@@ -1,6 +1,6 @@
 import { formatPersonsSigned, formatMiaSigned } from '../utils/calculations.js'
 
-function Kpi({ label, value, sekundært, tone = 'default' }) {
+function Kpi({ label, value, sekundært, tone = 'default', sammenligning }) {
   const toneClass = {
     default: 'text-ink',
     positive: 'text-emerald-700',
@@ -13,8 +13,34 @@ function Kpi({ label, value, sekundært, tone = 'default' }) {
         {label}
       </div>
       <div className={`mt-1 text-2xl font-semibold num ${toneClass}`}>{value}</div>
-      {sekundært && (
+      {sekundært && !sammenligning && (
         <div className="mt-0.5 text-[12px] text-ink-soft">{sekundært}</div>
+      )}
+      {sammenligning && (
+        <div className="mt-2 pt-2 border-t border-rule space-y-0.5 text-[11.5px]">
+          <div className="flex items-baseline justify-between">
+            <span className="text-ink-soft truncate" title={sammenligning.navn}>
+              vs. {sammenligning.navn}
+            </span>
+            <span className="num text-ink-muted shrink-0 ml-2">
+              {sammenligning.værdi}
+            </span>
+          </div>
+          <div className="flex items-baseline justify-between">
+            <span className="text-ink-soft">Forskel (Δ)</span>
+            <span
+              className={`num font-medium shrink-0 ml-2 ${
+                sammenligning.deltaTone === 'positive'
+                  ? 'text-emerald-700'
+                  : sammenligning.deltaTone === 'negative'
+                  ? 'text-rose-700'
+                  : 'text-ink'
+              }`}
+            >
+              {sammenligning.delta}
+            </span>
+          </div>
+        </div>
       )}
     </div>
   )
@@ -26,7 +52,28 @@ function tone(n) {
   return 'default'
 }
 
-export default function EffectSummary({ sumArbejdsudbud, sumBnp, sumProvenu, antalMedBnp, antalMedProvenu, antalValgt }) {
+export default function EffectSummary({
+  sumArbejdsudbud,
+  sumBnp,
+  sumProvenu,
+  antalMedBnp,
+  antalMedProvenu,
+  antalValgt,
+  sammenligning,
+}) {
+  function lavSammenligning(felt, formatter) {
+    if (!sammenligning) return null
+    const aVal = felt === 'arbejdsudbud' ? sumArbejdsudbud : felt === 'bnp' ? sumBnp : sumProvenu
+    const bVal = sammenligning[felt]
+    const delta = aVal - bVal
+    return {
+      navn: sammenligning.navn,
+      værdi: formatter(bVal),
+      delta: formatter(delta),
+      deltaTone: tone(delta),
+    }
+  }
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
       <Kpi
@@ -34,18 +81,21 @@ export default function EffectSummary({ sumArbejdsudbud, sumBnp, sumProvenu, ant
         value={antalValgt ? formatPersonsSigned(sumArbejdsudbud) : '—'}
         sekundært="fuldtidspersoner"
         tone={tone(sumArbejdsudbud)}
+        sammenligning={lavSammenligning('arbejdsudbud', formatPersonsSigned)}
       />
       <Kpi
         label="BNP-effekt"
         value={antalValgt ? formatMiaSigned(sumBnp) : '—'}
         sekundært={`baseret på ${antalMedBnp} af ${antalValgt} reformer`}
         tone={tone(sumBnp)}
+        sammenligning={lavSammenligning('bnp', formatMiaSigned)}
       />
       <Kpi
         label="Provenu-effekt"
         value={antalValgt ? formatMiaSigned(sumProvenu) : '—'}
         sekundært={`baseret på ${antalMedProvenu} af ${antalValgt} reformer`}
         tone={tone(sumProvenu)}
+        sammenligning={lavSammenligning('provenu', formatMiaSigned)}
       />
     </div>
   )

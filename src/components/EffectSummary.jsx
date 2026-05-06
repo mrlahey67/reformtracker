@@ -1,6 +1,6 @@
 import { formatPersonsSigned, formatMiaSigned } from '../utils/calculations.js'
 
-function Kpi({ label, value, sekundært, tone = 'default', sammenligning }) {
+function Kpi({ label, value, sekundært, tone = 'default', sammenligning, justeret }) {
   const toneClass = {
     default: 'text-ink',
     positive: 'text-emerald-700',
@@ -13,6 +13,24 @@ function Kpi({ label, value, sekundært, tone = 'default', sammenligning }) {
         {label}
       </div>
       <div className={`mt-1 text-2xl font-semibold num ${toneClass}`}>{value}</div>
+      {justeret && (
+        <div className="mt-1 flex items-baseline gap-1.5 text-[11px]">
+          <span className="text-ink-soft uppercase tracking-wider">
+            Konservativt
+          </span>
+          <span
+            className={`num font-medium ${
+              justeret.tone === 'positive'
+                ? 'text-emerald-700'
+                : justeret.tone === 'negative'
+                ? 'text-rose-700'
+                : 'text-ink'
+            }`}
+          >
+            {justeret.værdi}
+          </span>
+        </div>
+      )}
       {sekundært && !sammenligning && (
         <div className="mt-0.5 text-[12px] text-ink-soft">{sekundært}</div>
       )}
@@ -60,6 +78,10 @@ export default function EffectSummary({
   antalMedProvenu,
   antalValgt,
   sammenligning,
+  justeretArbejdsudbud,
+  justeretBnp,
+  justeretProvenu,
+  visKonservativt,
 }) {
   function lavSammenligning(felt, formatter) {
     if (!sammenligning) return null
@@ -74,6 +96,15 @@ export default function EffectSummary({
     }
   }
 
+  function lavJusteret(naivVal, justeretVal, formatter) {
+    if (!visKonservativt || !antalValgt) return null
+    if (Math.abs(justeretVal - naivVal) < 0.01) return null
+    return {
+      værdi: formatter(justeretVal),
+      tone: tone(justeretVal),
+    }
+  }
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
       <Kpi
@@ -82,6 +113,7 @@ export default function EffectSummary({
         sekundært="fuldtidspersoner"
         tone={tone(sumArbejdsudbud)}
         sammenligning={lavSammenligning('arbejdsudbud', formatPersonsSigned)}
+        justeret={lavJusteret(sumArbejdsudbud, justeretArbejdsudbud, formatPersonsSigned)}
       />
       <Kpi
         label="BNP-effekt"
@@ -89,6 +121,7 @@ export default function EffectSummary({
         sekundært={`baseret på ${antalMedBnp} af ${antalValgt} reformer`}
         tone={tone(sumBnp)}
         sammenligning={lavSammenligning('bnp', formatMiaSigned)}
+        justeret={lavJusteret(sumBnp, justeretBnp, formatMiaSigned)}
       />
       <Kpi
         label="Provenu-effekt"
@@ -96,6 +129,7 @@ export default function EffectSummary({
         sekundært={`baseret på ${antalMedProvenu} af ${antalValgt} reformer`}
         tone={tone(sumProvenu)}
         sammenligning={lavSammenligning('provenu', formatMiaSigned)}
+        justeret={lavJusteret(sumProvenu, justeretProvenu, formatMiaSigned)}
       />
     </div>
   )

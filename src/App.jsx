@@ -9,7 +9,7 @@ import ReformModal from './components/ReformModal.jsx'
 import MetodeModal from './components/MetodeModal.jsx'
 import Pakker from './components/Pakker.jsx'
 import SammenligningsVælger from './components/SammenligningsVælger.jsx'
-import { sumEffect } from './utils/calculations.js'
+import { sumEffect, justeretSum } from './utils/calculations.js'
 
 const REFORM_IDS = new Set(reformer.map((r) => r.id))
 const PAKKE_IDS = new Set(pakker.map((p) => p.id))
@@ -41,6 +41,7 @@ export default function App() {
   const initial = useMemo(() => læsFraUrl(), [])
   const [valgteIds, setValgteIds] = useState(initial.ids)
   const [sammenligningId, setSammenligningId] = useState(initial.cmp)
+  const [visKonservativt, setVisKonservativt] = useState(false)
   const [åbenReform, setÅbenReform] = useState(null)
   const [åbenMetode, setÅbenMetode] = useState(false)
   const [delingsBesked, setDelingsBesked] = useState(null)
@@ -96,6 +97,9 @@ export default function App() {
   const sumArbejdsudbud = sumEffect(valgteReformer, 'arbejdsudbud_fuldtidspersoner')
   const sumBnp = sumEffect(valgteReformer, 'bnp_mia_kr')
   const sumProvenu = sumEffect(valgteReformer, 'provenu_mia_kr')
+  const justeretArbejdsudbud = justeretSum(valgteReformer, 'arbejdsudbud_fuldtidspersoner')
+  const justeretBnp = justeretSum(valgteReformer, 'bnp_mia_kr')
+  const justeretProvenu = justeretSum(valgteReformer, 'provenu_mia_kr')
   const antalMedBnp = valgteReformer.filter((r) => typeof r.bnp_mia_kr === 'number').length
   const antalMedProvenu = valgteReformer.filter((r) => typeof r.provenu_mia_kr === 'number').length
 
@@ -192,15 +196,39 @@ export default function App() {
                 <h2 className="text-lg font-semibold text-ink">
                   Din reformpakke
                 </h2>
-                <SammenligningsVælger
-                  valgtId={sammenligningId}
-                  onVælg={setSammenligningId}
-                />
+                <div className="flex items-center gap-4">
+                  <label className="flex items-center gap-1.5 text-[12px] text-ink-muted cursor-pointer select-none">
+                    <input
+                      type="checkbox"
+                      checked={visKonservativt}
+                      onChange={(e) => setVisKonservativt(e.target.checked)}
+                      className="rounded border-rule"
+                    />
+                    Konservativt skøn
+                    <button
+                      type="button"
+                      onClick={() => setÅbenMetode(true)}
+                      className="text-ink-soft hover:text-ink"
+                      title="Læs om overlap-heuristikken"
+                      aria-label="Forklaring"
+                    >
+                      ⓘ
+                    </button>
+                  </label>
+                  <SammenligningsVælger
+                    valgtId={sammenligningId}
+                    onVælg={setSammenligningId}
+                  />
+                </div>
               </div>
               <EffectSummary
                 sumArbejdsudbud={sumArbejdsudbud}
                 sumBnp={sumBnp}
                 sumProvenu={sumProvenu}
+                justeretArbejdsudbud={justeretArbejdsudbud}
+                justeretBnp={justeretBnp}
+                justeretProvenu={justeretProvenu}
+                visKonservativt={visKonservativt}
                 antalMedBnp={antalMedBnp}
                 antalMedProvenu={antalMedProvenu}
                 antalValgt={valgteReformer.length}

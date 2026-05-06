@@ -5,6 +5,44 @@ export function sumEffect(reforms, field) {
   }, 0)
 }
 
+// Overlap-justeringsheuristik: når flere reformer er i samme kategori,
+// rammer de overlappende målgrupper og marginalskat-effekter. Vi anvender
+// en grov, kategori-baseret discount-faktor.
+//
+// VIGTIGT: Faktorerne er konjekturelle og bygger ikke på en publiceret
+// dansk overlap-analyse. Brugen markeres tydeligt i UI'en.
+//
+// På tværs af kategorier antages uafhængighed (faktor 1,0).
+const OVERLAP_FAKTOR = {
+  1: 1.0,
+  2: 0.85,
+  3: 0.7,
+}
+
+export function overlapFaktor(antalIKategori) {
+  if (antalIKategori in OVERLAP_FAKTOR) return OVERLAP_FAKTOR[antalIKategori]
+  return 0.6 // gulv for 4+ reformer i samme kategori
+}
+
+export function justeretSum(reforms, field) {
+  // Grupper reformer efter kategori
+  const grupper = new Map()
+  for (const r of reforms) {
+    if (typeof r[field] !== 'number') continue
+    const k = r.kategori
+    if (!grupper.has(k)) grupper.set(k, [])
+    grupper.get(k).push(r[field])
+  }
+  // Summér hver gruppe og anvend discount
+  let total = 0
+  for (const [, værdier] of grupper) {
+    const gruppeSum = værdier.reduce((a, b) => a + b, 0)
+    const faktor = overlapFaktor(værdier.length)
+    total += gruppeSum * faktor
+  }
+  return total
+}
+
 export function formatNumber(n, { decimals = 0, suffix = '' } = {}) {
   if (n === null || n === undefined || Number.isNaN(n)) return '—'
   const rounded = Number(n).toFixed(decimals)

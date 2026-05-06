@@ -1,6 +1,31 @@
 import { useEffect } from 'react'
 import { formatPersonsSigned, formatMiaSigned, kategoriFarve } from '../utils/calculations.js'
 
+const KILDE_TYPE_STIL = {
+  ministeriel: { label: 'Ministeriel', class: 'bg-violet-50 text-violet-800 border-violet-200' },
+  uafhængig: { label: 'Uafhængig', class: 'bg-emerald-50 text-emerald-800 border-emerald-200' },
+  interesseret: { label: 'Interesseret', class: 'bg-amber-50 text-amber-800 border-amber-200' },
+}
+
+function KildeTypeBadge({ type }) {
+  if (!type || !KILDE_TYPE_STIL[type]) return null
+  const stil = KILDE_TYPE_STIL[type]
+  return (
+    <span
+      className={`text-[10px] uppercase tracking-wider rounded border px-1.5 py-0.5 ${stil.class}`}
+      title={
+        type === 'ministeriel'
+          ? 'Estimat fra ministerie/regering'
+          : type === 'uafhængig'
+          ? 'Estimat fra uafhængig forskning eller tværinstitutionel analyse'
+          : 'Estimat fra organisation med politisk eller økonomisk interesse i udfaldet'
+      }
+    >
+      {stil.label}
+    </span>
+  )
+}
+
 export default function ReformModal({ reform, valgt, onClose, onToggle }) {
   useEffect(() => {
     function onKey(e) {
@@ -65,6 +90,12 @@ export default function ReformModal({ reform, valgt, onClose, onToggle }) {
               >
                 {effektUkendt ? '—' : formatPersonsSigned(reform.arbejdsudbud_fuldtidspersoner)}
               </div>
+              {(typeof reform.arbejdsudbud_lav === 'number' ||
+                typeof reform.arbejdsudbud_høj === 'number') && (
+                <div className="text-[11px] text-ink-soft num mt-0.5">
+                  {formatPersonsSigned(reform.arbejdsudbud_lav)} – {formatPersonsSigned(reform.arbejdsudbud_høj)}
+                </div>
+              )}
             </div>
             <div className="rounded border border-rule px-3 py-2">
               <div className="text-[11px] uppercase text-ink-soft">BNP</div>
@@ -141,23 +172,88 @@ export default function ReformModal({ reform, valgt, onClose, onToggle }) {
           </div>
 
           <div className="mt-5 border-t border-rule pt-4">
-            <div className="text-[11px] uppercase tracking-wider text-ink-soft mb-1">
-              Kilde
-            </div>
-            <div className="text-[13px]">
-              {reform.kilde_url ? (
-                <a
-                  href={reform.kilde_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-accent hover:underline"
-                >
-                  {reform.kilde} ↗
-                </a>
-              ) : (
-                <span className="text-ink-muted">{reform.kilde}</span>
+            <div className="text-[11px] uppercase tracking-wider text-ink-soft mb-2 flex items-center gap-2">
+              Kilde{reform.kilder?.length > 1 ? 'r' : ''}
+              {reform.kilde_type && (
+                <KildeTypeBadge type={reform.kilde_type} />
               )}
             </div>
+            {reform.kilder?.length > 0 ? (
+              <ul className="space-y-2.5 text-[12.5px]">
+                {reform.kilder.map((k, i) => (
+                  <li key={i} className="border-l-2 border-rule pl-3">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="font-medium text-ink">{k.org}</span>
+                      <KildeTypeBadge type={k.kilde_type} />
+                    </div>
+                    {k.url ? (
+                      <a
+                        href={k.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-accent hover:underline text-[12px]"
+                      >
+                        {k.navn} ↗
+                      </a>
+                    ) : (
+                      <div className="text-ink-muted text-[12px]">{k.navn}</div>
+                    )}
+                    <div className="mt-1 flex flex-wrap gap-3 text-[11.5px] num text-ink-muted">
+                      {typeof k.estimat_arbejdsudbud === 'number' && (
+                        <span>
+                          Arbejdsudbud:{' '}
+                          <span
+                            className={
+                              k.estimat_arbejdsudbud < 0 ? 'text-rose-700' : 'text-ink'
+                            }
+                          >
+                            {formatPersonsSigned(k.estimat_arbejdsudbud)}
+                          </span>
+                        </span>
+                      )}
+                      {typeof k.estimat_bnp === 'number' && (
+                        <span>
+                          BNP:{' '}
+                          <span className={k.estimat_bnp < 0 ? 'text-rose-700' : 'text-ink'}>
+                            {formatMiaSigned(k.estimat_bnp)}
+                          </span>
+                        </span>
+                      )}
+                      {typeof k.estimat_provenu === 'number' && (
+                        <span>
+                          Provenu:{' '}
+                          <span
+                            className={k.estimat_provenu < 0 ? 'text-rose-700' : 'text-ink'}
+                          >
+                            {formatMiaSigned(k.estimat_provenu)}
+                          </span>
+                        </span>
+                      )}
+                    </div>
+                    {k.noter && (
+                      <div className="text-[11.5px] text-ink-soft italic mt-0.5">
+                        {k.noter}
+                      </div>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <div className="text-[13px]">
+                {reform.kilde_url ? (
+                  <a
+                    href={reform.kilde_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-accent hover:underline"
+                  >
+                    {reform.kilde} ↗
+                  </a>
+                ) : (
+                  <span className="text-ink-muted">{reform.kilde}</span>
+                )}
+              </div>
+            )}
           </div>
 
           <div className="mt-6 flex items-center justify-end gap-2">

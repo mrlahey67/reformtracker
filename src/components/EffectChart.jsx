@@ -8,6 +8,7 @@ import {
   ReferenceLine,
   ResponsiveContainer,
   CartesianGrid,
+  ErrorBar,
 } from 'recharts'
 import { kategoriFarve, formatPersonsSigned } from '../utils/calculations.js'
 
@@ -15,6 +16,8 @@ function TooltipIndhold({ active, payload }) {
   if (!active || !payload?.length) return null
   const d = payload[0].payload
   const negativ = d.arbejdsudbud_fuldtidspersoner < 0
+  const harSpredning =
+    typeof d.arbejdsudbud_lav === 'number' || typeof d.arbejdsudbud_høj === 'number'
   return (
     <div className="rounded border border-rule bg-white px-3 py-2 shadow-card text-[12px]">
       <div className="font-semibold text-ink mb-0.5">{d.titel}</div>
@@ -22,6 +25,11 @@ function TooltipIndhold({ active, payload }) {
       <div className={`mt-1 num ${negativ ? 'text-rose-700' : ''}`}>
         {formatPersonsSigned(d.arbejdsudbud_fuldtidspersoner)} fuldtidspersoner
       </div>
+      {harSpredning && (
+        <div className="text-[11px] text-ink-soft mt-0.5 num">
+          Spændet: {formatPersonsSigned(d.arbejdsudbud_lav)} — {formatPersonsSigned(d.arbejdsudbud_høj)}
+        </div>
+      )}
     </div>
   )
 }
@@ -37,19 +45,31 @@ export default function EffectChart({ valgteReformer }) {
     )
   }
 
-  const data = [...valgteReformer].sort(
-    (a, b) => b.arbejdsudbud_fuldtidspersoner - a.arbejdsudbud_fuldtidspersoner,
-  )
+  const data = [...valgteReformer]
+    .sort((a, b) => b.arbejdsudbud_fuldtidspersoner - a.arbejdsudbud_fuldtidspersoner)
+    .map((r) => {
+      const central = r.arbejdsudbud_fuldtidspersoner
+      const lav = typeof r.arbejdsudbud_lav === 'number' ? r.arbejdsudbud_lav : central
+      const høj = typeof r.arbejdsudbud_høj === 'number' ? r.arbejdsudbud_høj : central
+      // Error = asymmetric [downward, upward] som deltaer fra central
+      const errLow = Math.max(0, central - lav)
+      const errHigh = Math.max(0, høj - central)
+      const harSpredning = errLow > 0 || errHigh > 0
+      return {
+        ...r,
+        error: harSpredning ? [errLow, errHigh] : null,
+      }
+    })
+
   const harNegative = data.some((d) => d.arbejdsudbud_fuldtidspersoner < 0)
+  const harSpredning = data.some((d) => d.error)
 
   return (
     <div className="rounded-md border border-rule bg-white p-4 shadow-card">
       <div className="mb-3 flex items-baseline justify-between">
-        <h3 className="text-sm font-semibold text-ink">
-          Bidrag per reform
-        </h3>
+        <h3 className="text-sm font-semibold text-ink">Bidrag per reform</h3>
         <span className="text-[11px] text-ink-soft">
-          Fuldtidspersoner, fuldt indfaset
+          Fuldtidspersoner, fuldt indfaset{harSpredning ? ' · fejlbjælker = spændet' : ''}
         </span>
       </div>
       <div style={{ width: '100%', height: Math.max(220, data.length * 38) }}>
@@ -57,7 +77,7 @@ export default function EffectChart({ valgteReformer }) {
           <BarChart
             data={data}
             layout="vertical"
-            margin={{ top: 4, right: 16, left: 4, bottom: 4 }}
+            margin={{ top: 4, right: 24, left: 4, bottom: 4 }}
           >
             <CartesianGrid horizontal={false} stroke="#E5E7EB" />
             <XAxis
@@ -90,6 +110,13 @@ export default function EffectChart({ valgteReformer }) {
                   }
                 />
               ))}
+              <ErrorBar
+                dataKey="error"
+                width={4}
+                strokeWidth={1.5}
+                stroke="rgba(17,24,39,0.55)"
+                direction="x"
+              />
             </Bar>
           </BarChart>
         </ResponsiveContainer>

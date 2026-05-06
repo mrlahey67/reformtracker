@@ -11,9 +11,20 @@
     "usikkerhed": "Tallet kommer fra regeringens 2030-plan og bygger på modellerede adfærdsantagelser. En yderligere sænkning (fx til 300.000 kr) vil give en større effekt, men der foreligger ikke offentliggjort estimat.",
     "kilde": "Erhvervsministeriet (2023): Ny international arbejdskraft giver 4.500 i øget arbejdsudbud i Danmark",
     "kilde_url": "https://oem.dk/nyheder/nyhedsarkiv/2023/november/ny-international-arbejdskraft-giver-4500-i-oeget-arbejdsudbud-i-danmark/",
-    "politisk_support": ["Regeringen", "Dansk Industri", "Dansk Erhverv", "Venstre", "Moderaterne"],
-    "politisk_modstand": ["Enhedslisten", "SF", "Fagbevægelsens Hovedorganisation"],
-    "kontroversgrad": 3
+    "politisk_support": [
+      "Regeringen",
+      "Dansk Industri",
+      "Dansk Erhverv",
+      "Venstre",
+      "Moderaterne"
+    ],
+    "politisk_modstand": [
+      "Enhedslisten",
+      "SF",
+      "Fagbevægelsens Hovedorganisation"
+    ],
+    "kontroversgrad": 3,
+    "kilde_type": "ministeriel"
   },
   {
     "id": "positivliste-faglaert",
@@ -27,9 +38,18 @@
     "usikkerhed": "Økonomer vurderer effekten som 'utvetydigt positiv, men størrelsen er behæftet med meget høj usikkerhed'. Der foreligger ikke et officielt fuldtidspersons-estimat. Til sammenligning kan uddannelse af flere faglærte indenlandsk potentielt løfte arbejdsudbuddet med op til 26.000 personer frem mod 2035 (AE).",
     "kilde": "Altinget (2024): Økonomer sår tvivl om effekten af nye regler for udenlandsk arbejdskraft",
     "kilde_url": "https://www.altinget.dk/arbejdsmarked/artikel/oekonomer-saar-tvivl-om-effekten-af-nye-regler-for-udenlandsk-arbejdskraft",
-    "politisk_support": ["Dansk Industri", "Dansk Erhverv", "Moderaterne", "Venstre"],
-    "politisk_modstand": ["Enhedslisten", "Dansk Folkeparti"],
-    "kontroversgrad": 2
+    "politisk_support": [
+      "Dansk Industri",
+      "Dansk Erhverv",
+      "Moderaterne",
+      "Venstre"
+    ],
+    "politisk_modstand": [
+      "Enhedslisten",
+      "Dansk Folkeparti"
+    ],
+    "kontroversgrad": 2,
+    "kilde_type": "uafhængig"
   },
   {
     "id": "siri-forenkling",
@@ -43,9 +63,16 @@
     "usikkerhed": "Effekten indgår implicit i beløbsordningens og positivlistens estimater og er ikke isoleret beregnet. Udelades indtil der foreligger et kildeforankret tal.",
     "kilde": "Dansk Erhverv (2024): Dansk Handlekraft — arbejdskraft",
     "kilde_url": "https://www.danskerhverv.dk/danmark-er-en-virksomhed/arbejdskraft/",
-    "politisk_support": ["Dansk Industri", "Dansk Erhverv", "Moderaterne", "Venstre", "Liberal Alliance"],
+    "politisk_support": [
+      "Dansk Industri",
+      "Dansk Erhverv",
+      "Moderaterne",
+      "Venstre",
+      "Liberal Alliance"
+    ],
     "politisk_modstand": [],
-    "kontroversgrad": 1
+    "kontroversgrad": 1,
+    "kilde_type": "interesseret"
   },
   {
     "id": "modregning-afskaf",
@@ -59,9 +86,19 @@
     "usikkerhed": "Finansministeriets estimater: ca. 950 fuldtidspersoner i 2023 stigende til ca. 1.050 i 2025. Effekten vurderes at vokse yderligere, efterhånden som flere pensionister tilpasser adfærd.",
     "kilde": "Regeringen/Beskæftigelsesministeriet (2023): 50.000 pensionister slipper for modregning i folkepension",
     "kilde_url": "https://bm.dk/nyheder/pressemeddelelser/2023/06/50000-pensionister-slipper-for-modregning-i-folkepension/",
-    "politisk_support": ["Regeringen", "Venstre", "Socialdemokratiet", "Moderaterne", "Dansk Industri", "Dansk Erhverv"],
-    "politisk_modstand": ["Enhedslisten"],
-    "kontroversgrad": 1
+    "politisk_support": [
+      "Regeringen",
+      "Venstre",
+      "Socialdemokratiet",
+      "Moderaterne",
+      "Dansk Industri",
+      "Dansk Erhverv"
+    ],
+    "politisk_modstand": [
+      "Enhedslisten"
+    ],
+    "kontroversgrad": 1,
+    "kilde_type": "ministeriel"
   },
   {
     "id": "efterloen-afskaf",
@@ -71,13 +108,44 @@
     "beskrivelse": "Luk adgangen til efterløn for nye årgange. Ordningen er allerede under udfasning, men fuld afskaffelse vil øge arbejdsudbuddet yderligere blandt ældre i arbejdsstyrken.",
     "arbejdsudbud_fuldtidspersoner": 8000,
     "bnp_mia_kr": null,
-    "provenu_mia_kr": 7.0,
+    "provenu_mia_kr": 7,
     "usikkerhed": "Nyere beregninger fra Finansministeriet: ca. 8.000 flere i arbejde i 2030. Tidligere estimater lå væsentligt højere (op til 18.000). Forbedring af de offentlige finanser estimeres til ca. 7 mia. kr i 2030. Afskaffelse kræver dog betydelige udbetalinger af indbetalte bidrag (anslået 20+ mia. kr) over en kortere årrække.",
     "kilde": "Finansministeriet via Netavisen Pio (2024): Se tallene: Derfor er efterlønnen ved at blive udfaset",
     "kilde_url": "https://piopio.dk/se-tallene-derfor-er-efterlonnen-ved-at-blive-udfaset",
-    "politisk_support": ["CEPOS", "Liberal Alliance", "Moderaterne"],
-    "politisk_modstand": ["Socialdemokratiet", "SF", "Enhedslisten", "Fagbevægelsens Hovedorganisation"],
-    "kontroversgrad": 5
+    "politisk_support": [
+      "CEPOS",
+      "Liberal Alliance",
+      "Moderaterne"
+    ],
+    "politisk_modstand": [
+      "Socialdemokratiet",
+      "SF",
+      "Enhedslisten",
+      "Fagbevægelsens Hovedorganisation"
+    ],
+    "kontroversgrad": 5,
+    "arbejdsudbud_lav": 8000,
+    "arbejdsudbud_høj": 18000,
+    "kilde_type": "ministeriel",
+    "kilder": [
+      {
+        "org": "Finansministeriet (nyere)",
+        "navn": "FM-regnemetoder",
+        "url": "https://piopio.dk/se-tallene-derfor-er-efterlonnen-ved-at-blive-udfaset",
+        "estimat_arbejdsudbud": 8000,
+        "estimat_provenu": 7,
+        "kilde_type": "ministeriel",
+        "noter": "Revideret estimat: 8.000 i arbejde i 2030"
+      },
+      {
+        "org": "Finansministeriet (tidligere)",
+        "navn": "FM-regnemetoder (tidligere version)",
+        "url": "https://piopio.dk/se-tallene-derfor-er-efterlonnen-ved-at-blive-udfaset",
+        "estimat_arbejdsudbud": 18000,
+        "kilde_type": "ministeriel",
+        "noter": "Tidligere estimat. Difference skyldes opdaterede adfærdsantagelser."
+      }
+    ]
   },
   {
     "id": "su-hjemmeboende-aftrap",
@@ -91,9 +159,19 @@
     "usikkerhed": "AE-Rådet estimerer en årlig besparelse på ca. 350 mio. kr ved indkomstaftrapning af SU for hjemmeboende på ungdomsuddannelser. Effekten på arbejdsudbuddet er ikke præcist opgjort i fuldtidspersoner, men forskning viser at lavere SU øger elevernes erhvervsindkomst uden negativ effekt på karakterer.",
     "kilde": "Arbejderbevægelsens Erhvervsråd (2013): Effekt af øget aftrapning af SU til hjemmeboende",
     "kilde_url": "https://www.ae.dk/analyse/2013-01-effekt-af-oeget-aftrapning-af-su-til-hjemmeboende",
-    "politisk_support": ["CEPOS", "Liberal Alliance", "Moderaterne"],
-    "politisk_modstand": ["Enhedslisten", "SF", "Radikale Venstre", "DSF"],
-    "kontroversgrad": 4
+    "politisk_support": [
+      "CEPOS",
+      "Liberal Alliance",
+      "Moderaterne"
+    ],
+    "politisk_modstand": [
+      "Enhedslisten",
+      "SF",
+      "Radikale Venstre",
+      "DSF"
+    ],
+    "kontroversgrad": 4,
+    "kilde_type": "interesseret"
   },
   {
     "id": "kandidat-1aarig",
@@ -103,13 +181,57 @@
     "beskrivelse": "Universitetsreformen fra juni 2023 forkorter hver tiende til hver fjerde kandidatuddannelse fra 2-årig til 1-årig. Formålet er at få dimittender hurtigere ud på arbejdsmarkedet og reducere tiden på SU.",
     "arbejdsudbud_fuldtidspersoner": 4600,
     "bnp_mia_kr": null,
-    "provenu_mia_kr": 2.0,
+    "provenu_mia_kr": 2,
     "usikkerhed": "Uddannelses- og Forskningsministeriets beregning af den politiske aftale: 4.600 personer i 2030 og 2 mia. kr i provenu årligt (ca. 0,8 mia. kr fra SU/uddannelsesbesparelser + 1,2 mia. kr fra øget arbejdsudbud). Regeringens oprindelige udspil antog 6.000 personer. Akademikerne og DM vurderer at effekten er overvurderet, og peger på potentielle langsigtede tab i skatteprovenu fra lavere produktivitet.",
     "kilde": "Uddannelses- og Forskningsministeriet (2023): Investering i uddannelse og reform af kandidatuddannelserne",
     "kilde_url": "https://ufm.dk/aktuelt/pressemeddelelser/2022/september/investering-i-uddannelse-og-reform-af-kandidatuddannelserne-laes-hele-udspillet/",
-    "politisk_support": ["Regeringen", "Socialdemokratiet", "Venstre", "Moderaterne", "Konservative"],
-    "politisk_modstand": ["Akademikerne", "DM", "DSF", "Enhedslisten", "SF", "Radikale Venstre"],
-    "kontroversgrad": 4
+    "politisk_support": [
+      "Regeringen",
+      "Socialdemokratiet",
+      "Venstre",
+      "Moderaterne",
+      "Konservative"
+    ],
+    "politisk_modstand": [
+      "Akademikerne",
+      "DM",
+      "DSF",
+      "Enhedslisten",
+      "SF",
+      "Radikale Venstre"
+    ],
+    "kontroversgrad": 4,
+    "arbejdsudbud_lav": 4600,
+    "arbejdsudbud_høj": 6000,
+    "kilde_type": "ministeriel",
+    "kilder": [
+      {
+        "org": "Uddannelses- og Forskningsministeriet",
+        "navn": "Investering i uddannelse og reform af kandidatuddannelserne (2023)",
+        "url": "https://ufm.dk/aktuelt/pressemeddelelser/2022/september/investering-i-uddannelse-og-reform-af-kandidatuddannelserne-laes-hele-udspillet/",
+        "estimat_arbejdsudbud": 4600,
+        "estimat_provenu": 2,
+        "kilde_type": "ministeriel",
+        "noter": "Beregning af den politiske aftale (juni 2023)"
+      },
+      {
+        "org": "Regeringen (oprindelig udspil)",
+        "navn": "Reformpakke for fleksible universitetsveje (sep 2022)",
+        "url": "https://regeringen.dk/nyheder/2023/nye-fleksible-universitetsveje-er-foerste-udspil-i-ny-sammenhaengende-reformkurs-paa-uddannelsesomraadet/",
+        "estimat_arbejdsudbud": 6000,
+        "kilde_type": "ministeriel",
+        "noter": "Højere før forhandlingerne reducerede ambitionsniveauet"
+      },
+      {
+        "org": "DM/Akademikerne",
+        "navn": "Korte kandidatuddannelser vil koste 1,8 mia. kr/år (2024)",
+        "url": "https://dm.dk/akademikerbladet/aktuelt/2024/december/korte-kandidatuddannelser-vil-koste-1-8-milliarder-kroner-aaret/",
+        "estimat_arbejdsudbud": null,
+        "estimat_provenu": -1.8,
+        "kilde_type": "interesseret",
+        "noter": "Kritisk vurdering: lavere produktivitet → lavere skatteprovenu"
+      }
+    ]
   },
   {
     "id": "beskaeftigelsesfradrag-forhoej",
@@ -123,9 +245,39 @@
     "usikkerhed": "Skatteministeriets beregning: en forhøjelse af det maksimale beskæftigelsesfradrag med 10.000 kr øger arbejdsudbuddet med op til 2.500 fuldtidspersoner. DI vurderer at potentialet er væsentligt større (op til 8.200 personer), hvis fradraget rettes særligt mod deltidsansatte. Provenutab efter adfærd: ca. 1,4 mia. kr.",
     "kilde": "Skatteministeriet (2023): Faktaark — Beskæftigelsesfradrag",
     "kilde_url": "https://skm.dk/media/azxljwfl/faktaark-5-beskaeftigelsesfradrag.pdf",
-    "politisk_support": ["Regeringen", "Moderaterne", "Socialdemokratiet", "Venstre", "DI"],
-    "politisk_modstand": ["CEPOS (foretrækker topskattelettelse)", "Enhedslisten"],
-    "kontroversgrad": 2
+    "politisk_support": [
+      "Regeringen",
+      "Moderaterne",
+      "Socialdemokratiet",
+      "Venstre",
+      "DI"
+    ],
+    "politisk_modstand": [
+      "CEPOS (foretrækker topskattelettelse)",
+      "Enhedslisten"
+    ],
+    "kontroversgrad": 2,
+    "arbejdsudbud_lav": 2500,
+    "arbejdsudbud_høj": 8200,
+    "kilde_type": "ministeriel",
+    "kilder": [
+      {
+        "org": "Skatteministeriet",
+        "navn": "Faktaark — Beskæftigelsesfradrag (2023)",
+        "url": "https://skm.dk/media/azxljwfl/faktaark-5-beskaeftigelsesfradrag.pdf",
+        "estimat_arbejdsudbud": 2500,
+        "kilde_type": "ministeriel",
+        "noter": "Per 10.000 kr forhøjelse af det maksimale fradrag"
+      },
+      {
+        "org": "Dansk Industri",
+        "navn": "Yderligere løft i beskæftigelsesfradraget (2022)",
+        "url": "https://www.danskindustri.dk/arkiv/analyser/2022/8/yderligere-loft-i-beskaftigelsesfradraget-kan-fa-flere-deltidsansatte-pa-fuld-tid/",
+        "estimat_arbejdsudbud": 8200,
+        "kilde_type": "interesseret",
+        "noter": "Hvis fradraget rettes særligt mod offentligt deltidsansatte (73.600 berørte)"
+      }
+    ]
   },
   {
     "id": "topskat-afskaf",
@@ -139,9 +291,40 @@
     "usikkerhed": "CEPOS' beregning på baggrund af FM-regnemetode: 8.300 fuldtidspersoner; Kraka Advisory: ca. 9.000. Øger Gini-koefficienten med ca. 0,3-0,9 procentpoint. Behavioral provenutab: ca. 7,5 mia. kr. Estimaterne forudsætter fuld adfærdstilpasning.",
     "kilde": "CEPOS (2023): Forskellige skatteinstrumenters påvirkning af arbejdsudbud og velstand",
     "kilde_url": "https://cepos.dk/artikler/forskellige-skatteinstrumenters-pavirkning-af-arbejdsudbud-og-velstand-lavere-topskat-er-meget-mere-effektivt-end-oget-beskaeftigelsesfradrag/",
-    "politisk_support": ["CEPOS", "Liberal Alliance", "Konservative"],
-    "politisk_modstand": ["Socialdemokratiet", "SF", "Enhedslisten", "AE-Rådet", "Fagbevægelsens Hovedorganisation"],
-    "kontroversgrad": 5
+    "politisk_support": [
+      "CEPOS",
+      "Liberal Alliance",
+      "Konservative"
+    ],
+    "politisk_modstand": [
+      "Socialdemokratiet",
+      "SF",
+      "Enhedslisten",
+      "AE-Rådet",
+      "Fagbevægelsens Hovedorganisation"
+    ],
+    "kontroversgrad": 5,
+    "arbejdsudbud_lav": 8300,
+    "arbejdsudbud_høj": 9000,
+    "kilde_type": "interesseret",
+    "kilder": [
+      {
+        "org": "CEPOS",
+        "navn": "Forskellige skatteinstrumenters påvirkning af arbejdsudbud og velstand (2023)",
+        "url": "https://cepos.dk/artikler/forskellige-skatteinstrumenters-pavirkning-af-arbejdsudbud-og-velstand-lavere-topskat-er-meget-mere-effektivt-end-oget-beskaeftigelsesfradrag/",
+        "estimat_arbejdsudbud": 8300,
+        "kilde_type": "interesseret",
+        "noter": "Bygger på FM-regnemetode"
+      },
+      {
+        "org": "Kraka Advisory",
+        "navn": "CEPOS' kritik af skatteudspil udelader vigtige effekter (2022)",
+        "url": "https://kraka-advisory.com/news/cepos-kritik-af-skatteudspil-udelader-vigtige-effekter-og-fokuserer-unuanceret",
+        "estimat_arbejdsudbud": 9000,
+        "kilde_type": "interesseret",
+        "noter": "Inkluderer +0,32 procentpoint Gini-effekt"
+      }
+    ]
   },
   {
     "id": "arbejdspligt-37t",
@@ -155,9 +338,44 @@
     "usikkerhed": "Beskæftigelsesministeriets interne notat estimerer, at 300 fuldtidspersoner kommer i ordinær beskæftigelse som følge af aftalen. Effekten er omdiskuteret — eksperter påpeger at sprog- og kvalifikationsbarrierer er de primære hindringer for beskæftigelse blandt målgruppen.",
     "kilde": "Regeringen (2023): Ny aftale indfører arbejdspligt",
     "kilde_url": "https://regeringen.dk/aktuelt/nyheder/2023/ny-aftale-indfoerer-arbejdspligt/",
-    "politisk_support": ["Regeringen", "Socialdemokratiet", "Venstre", "Moderaterne", "Danmarksdemokraterne", "Dansk Folkeparti", "Konservative", "Liberal Alliance"],
-    "politisk_modstand": ["Enhedslisten", "SF", "Radikale Venstre", "Alternativet"],
-    "kontroversgrad": 5
+    "politisk_support": [
+      "Regeringen",
+      "Socialdemokratiet",
+      "Venstre",
+      "Moderaterne",
+      "Danmarksdemokraterne",
+      "Dansk Folkeparti",
+      "Konservative",
+      "Liberal Alliance"
+    ],
+    "politisk_modstand": [
+      "Enhedslisten",
+      "SF",
+      "Radikale Venstre",
+      "Alternativet"
+    ],
+    "kontroversgrad": 5,
+    "arbejdsudbud_lav": 25,
+    "arbejdsudbud_høj": 300,
+    "kilde_type": "ministeriel",
+    "kilder": [
+      {
+        "org": "Beskæftigelsesministeriet",
+        "navn": "Internt notat (2023)",
+        "url": "https://regeringen.dk/aktuelt/nyheder/2023/ny-aftale-indfoerer-arbejdspligt/",
+        "estimat_arbejdsudbud": 300,
+        "kilde_type": "ministeriel",
+        "noter": "Varig effekt — antal i ordinær beskæftigelse"
+      },
+      {
+        "org": "Regeringen (1. år-skøn)",
+        "navn": "37 timers arbejdspligt — implementeringsår",
+        "url": "https://www.dr.dk/nyheder/seneste/arbejdspligt-paa-37-timer-vedtaget-regeringens-maal-er-faa-flere-indvandrere-i",
+        "estimat_arbejdsudbud": 25,
+        "kilde_type": "ministeriel",
+        "noter": "Kun 25 personer forventes i job i 2025 (indfasningsår)"
+      }
+    ]
   },
   {
     "id": "timers225-stram",
@@ -171,9 +389,42 @@
     "usikkerhed": "Finansministeriets samlede effektvurdering af kontanthjælpsloftet og 225-timersreglen: 350 fuldtidspersoner på kort sigt. Langsigtede effekter vurderes større, men effektstørrelsen bestrides bl.a. af CEPOS (der mener FM undervurderer) og af forskere (der peger på metodiske mangler). Reglen medfører betydelig økonomisk nedgang for ramte husstande.",
     "kilde": "Finansministeriet (2019): Kontanthjælpsloftet og 225-timersreglen får flere i arbejde",
     "kilde_url": "https://fm.dk/nyheder/nyhedsarkiv/2019/april/kontanthjaelpsloftet-og-225timersreglen-faar-flere-i-arbejde/",
-    "politisk_support": ["Venstre", "Konservative", "Liberal Alliance", "Dansk Folkeparti", "Moderaterne"],
-    "politisk_modstand": ["Enhedslisten", "SF", "Radikale Venstre", "Alternativet", "Dansk Socialrådgiverforening"],
-    "kontroversgrad": 4
+    "politisk_support": [
+      "Venstre",
+      "Konservative",
+      "Liberal Alliance",
+      "Dansk Folkeparti",
+      "Moderaterne"
+    ],
+    "politisk_modstand": [
+      "Enhedslisten",
+      "SF",
+      "Radikale Venstre",
+      "Alternativet",
+      "Dansk Socialrådgiverforening"
+    ],
+    "kontroversgrad": 4,
+    "arbejdsudbud_lav": 0,
+    "arbejdsudbud_høj": 450,
+    "kilde_type": "ministeriel",
+    "kilder": [
+      {
+        "org": "Beskæftigelsesministeriet",
+        "navn": "Kontanthjælpsloftet og 225-timersreglen får flere i arbejde (2019)",
+        "url": "https://fm.dk/nyheder/nyhedsarkiv/2019/april/kontanthjaelpsloftet-og-225timersreglen-faar-flere-i-arbejde/",
+        "estimat_arbejdsudbud": 450,
+        "kilde_type": "ministeriel",
+        "noter": "Inkluderer 350 fra kontanthjælp + 100 fra dagpenge"
+      },
+      {
+        "org": "CEPOS",
+        "navn": "Effekt af kontanthjælpsloft — beskæftigelsesministeriets analyse er forkert",
+        "url": "https://cepos.dk/artikler/effekt-af-kontanthjaelpsloft-beskaeftigelsesministeriets-analyse-er-forkert/",
+        "estimat_arbejdsudbud": 0,
+        "kilde_type": "interesseret",
+        "noter": "CEPOS hævder ministeriets 3,4-dages effekt er metodisk forkert. Reel effekt 'tæt på nul'."
+      }
+    ]
   },
   {
     "id": "fu-fradrag-130",
@@ -181,15 +432,25 @@
     "kort_titel": "F&U-fradrag 130%",
     "kategori": "Skat og incitamenter",
     "beskrivelse": "Permanentgør fradraget for forskning og udvikling på 130% (mod nuværende sats). Fradraget var midlertidigt løftet til 130% i 2020-2022 under corona-aftalerne og ønskes fastfrossen af bl.a. DI og Life Science-brancherne.",
-    "arbejdsudbud_fuldtidspersoner": null,
+    "arbejdsudbud_fuldtidspersoner": 300,
     "bnp_mia_kr": 12.5,
     "provenu_mia_kr": -1.5,
     "usikkerhed": "Regeringen har senere foreslået 120% frem for 130%. BNP-effekten på ca. 12,5 mia. kr er Socialdemokratiets vurdering af et permanent 130%-fradrag (opgjort som strukturel BNP-løft ift. 100%). Den direkte effekt på arbejdsudbuddet er ikke isoleret estimeret — løftet går via øget produktivitet og private investeringer.",
     "kilde": "Skatteministeriet (2023): Merfradrag for udgifter til forskning og udvikling",
     "kilde_url": "https://skm.dk/media/ycuerqs4/merfradrag-for-udgifter-til-forskning-og-udvikling.pdf",
-    "politisk_support": ["Dansk Industri", "Life Science-brancherne", "Venstre", "Moderaterne", "Konservative", "Liberal Alliance"],
-    "politisk_modstand": ["Enhedslisten"],
-    "kontroversgrad": 2
+    "politisk_support": [
+      "Dansk Industri",
+      "Life Science-brancherne",
+      "Venstre",
+      "Moderaterne",
+      "Konservative",
+      "Liberal Alliance"
+    ],
+    "politisk_modstand": [
+      "Enhedslisten"
+    ],
+    "kontroversgrad": 2,
+    "kilde_type": "ministeriel"
   },
   {
     "id": "formueskat-05pct",
@@ -203,9 +464,43 @@
     "usikkerhed": "Effekt-estimaterne er stærkt omdiskuterede. AE-Rådet (med reference til NBER-paper af Henrik Kleven om historiske svenske og danske formueskatter) finder begrænset effekt: ca. 200 fuldtidspersoner mindre og 1,6 mia. kr lavere BNP. DI hævder derimod 16 mia. kr lavere BNP årligt og at op mod 850.000 jobs påvirkes — AE afviser DI's tal som baseret på et ikke-fagfællebedømt arbejdspapir om norske forhold (forskellig exit-beskatning end i Danmark). Provenu på 6-7 mia. kr er S' egen vurdering; DI peger på, at provenuet falder markant uden 'papirværdier'.",
     "kilde": "Arbejderbevægelsens Erhvervsråd (marts 2026): Gør formueskat Danmark fattigere?",
     "kilde_url": "https://www.ae.dk/okonomisk-kommentar/2026-03-goer-formueskat-danmark-fattigere",
-    "politisk_support": ["Socialdemokratiet", "SF", "Enhedslisten", "Alternativet"],
-    "politisk_modstand": ["Venstre", "Konservative", "Moderaterne", "Liberal Alliance", "Dansk Folkeparti", "Dansk Industri", "Dansk Erhverv"],
-    "kontroversgrad": 5
+    "politisk_support": [
+      "Socialdemokratiet",
+      "SF",
+      "Enhedslisten",
+      "Alternativet"
+    ],
+    "politisk_modstand": [
+      "Venstre",
+      "Konservative",
+      "Moderaterne",
+      "Liberal Alliance",
+      "Dansk Folkeparti",
+      "Dansk Industri",
+      "Dansk Erhverv"
+    ],
+    "kontroversgrad": 5,
+    "kilde_type": "uafhængig",
+    "kilder": [
+      {
+        "org": "AE-Rådet",
+        "navn": "Gør formueskat Danmark fattigere? (marts 2026)",
+        "url": "https://www.ae.dk/okonomisk-kommentar/2026-03-goer-formueskat-danmark-fattigere",
+        "estimat_arbejdsudbud": -200,
+        "estimat_bnp": -1.6,
+        "kilde_type": "interesseret",
+        "noter": "Bygger på Henrik Klevens NBER-paper om historiske svenske/danske formueskatter"
+      },
+      {
+        "org": "Dansk Industri",
+        "navn": "Mette F's formueskat kan ramme 850.000 danskeres job (2026)",
+        "url": "https://www.danskindustri.dk/om-di/kontakt-os/presse/arkiv/pressemeddelelser/2026/2/di-mette-fs-formueskat-kan-ramme-850.000-danskeres-job-og-gor-danmark-16-mia.-kr.-fattigere-om-aret",
+        "estimat_arbejdsudbud": null,
+        "estimat_bnp": -16,
+        "kilde_type": "interesseret",
+        "noter": "AE afviser tallene som baseret på et ikke-fagfællebedømt arbejdspapir om norske forhold"
+      }
+    ]
   },
   {
     "id": "arne-pension-udvid",
@@ -215,13 +510,49 @@
     "beskrivelse": "Socialdemokratiets pensionsudspil låser aldersgrænsen for tidlig folkepension (Arne-pension) fast på 66 år, så den ikke længere stiger automatisk med folkepensionsalderen, og hæver ydelsen med ca. 3.000 kr om måneden. Knap halvdelen af danskerne vurderes på sigt at kunne trække sig tidligere fra arbejdsmarkedet under udvidelsen. Centralt rødt valgløfte og afgørende stridspunkt mod V/KF/M.",
     "arbejdsudbud_fuldtidspersoner": -6000,
     "bnp_mia_kr": null,
-    "provenu_mia_kr": -8.0,
+    "provenu_mia_kr": -8,
     "usikkerhed": "Finansminister Wammen og AE-Rådet vurderer begge ca. -6.000 fuldtidspersoner i 2030. AE finder strukturel beskæftigelseseffekt på -6.000 til -7.000 personer i perioden 2035-2100. Andre kritikere har peget på op til -18.000 i arbejdsstyrken på kort sigt. Samlet pris: 30 mia. kr fordelt over indfasningsperioden — svarende til ca. 8 mia. kr/år når fuldt indfaset (0,3% af BNP). S' vurdering er, at de offentlige finanser samlet er holdbare med en strukturel saldo på +0,3% af BNP.",
     "kilde": "Arbejderbevægelsens Erhvervsråd (marts 2026): Effekterne af Socialdemokratiets pensionsudspil",
     "kilde_url": "https://www.ae.dk/analyse/2026-03-effekterne-af-socialdemokratiets-pensionsudspil",
-    "politisk_support": ["Socialdemokratiet", "SF", "Enhedslisten", "Dansk Folkeparti", "Fagbevægelsens Hovedorganisation"],
-    "politisk_modstand": ["Venstre", "Konservative", "Moderaterne", "Liberal Alliance", "Radikale Venstre", "CEPOS", "Dansk Industri", "Dansk Arbejdsgiverforening"],
-    "kontroversgrad": 5
+    "politisk_support": [
+      "Socialdemokratiet",
+      "SF",
+      "Enhedslisten",
+      "Dansk Folkeparti",
+      "Fagbevægelsens Hovedorganisation"
+    ],
+    "politisk_modstand": [
+      "Venstre",
+      "Konservative",
+      "Moderaterne",
+      "Liberal Alliance",
+      "Radikale Venstre",
+      "CEPOS",
+      "Dansk Industri",
+      "Dansk Arbejdsgiverforening"
+    ],
+    "kontroversgrad": 5,
+    "arbejdsudbud_lav": -18000,
+    "arbejdsudbud_høj": -6000,
+    "kilde_type": "uafhængig",
+    "kilder": [
+      {
+        "org": "AE-Rådet / Finansministeriet",
+        "navn": "Effekterne af Socialdemokratiets pensionsudspil (marts 2026)",
+        "url": "https://www.ae.dk/analyse/2026-03-effekterne-af-socialdemokratiets-pensionsudspil",
+        "estimat_arbejdsudbud": -6000,
+        "kilde_type": "interesseret",
+        "noter": "Strukturel beskæftigelseseffekt 2035-2100. Wammen citerer samme tal for 2030."
+      },
+      {
+        "org": "Dansk Industri",
+        "navn": "Arne Pension – en udvidelse vil skade dansk økonomi (2026)",
+        "url": "https://www.danskindustri.dk/folketingsvalg/arne-pension-udvidelse-2026-konsekvenser/",
+        "estimat_arbejdsudbud": -18000,
+        "kilde_type": "interesseret",
+        "noter": "Kort sigt; nær 59.000 i 2080. Holdbarhedsforværring: 30 mia. kr."
+      }
+    ]
   },
   {
     "id": "pensionsbeskatning-omlaeg",
@@ -235,9 +566,20 @@
     "usikkerhed": "Forslaget er kun skitseret — konkrete provenu- og adfærdseffekter kræver lovteksten. AE-analysen henviser til 'omlægning af pensionsbeskatning' som finansieringskilde til Arne-udvidelsen sammen med uudnyttede midler i den eksisterende Arne-ordning. Reformen kan have betydelige adfærdseffekter (tidspunkt for indbetalinger, opsparingsmønstre), men disse er ikke isoleret beregnet i offentligt tilgængelige analyser.",
     "kilde": "Arbejderbevægelsens Erhvervsråd (marts 2026): Effekterne af Socialdemokratiets pensionsudspil",
     "kilde_url": "https://www.ae.dk/analyse/2026-03-effekterne-af-socialdemokratiets-pensionsudspil",
-    "politisk_support": ["Socialdemokratiet", "SF", "Enhedslisten"],
-    "politisk_modstand": ["Venstre", "Konservative", "Moderaterne", "Liberal Alliance", "Forsikring & Pension"],
-    "kontroversgrad": 4
+    "politisk_support": [
+      "Socialdemokratiet",
+      "SF",
+      "Enhedslisten"
+    ],
+    "politisk_modstand": [
+      "Venstre",
+      "Konservative",
+      "Moderaterne",
+      "Liberal Alliance",
+      "Forsikring & Pension"
+    ],
+    "kontroversgrad": 4,
+    "kilde_type": "uafhængig"
   },
   {
     "id": "foertidspension-midlertidig",
@@ -251,9 +593,24 @@
     "usikkerhed": "Venstre angiver at forslaget kan frigøre ca. 2,5 mia. kr. Effekten på arbejdsudbuddet i fuldtidspersoner er ikke offentligt opgjort. Til kontekst: Dansk Arbejdsgiverforenings samlede reformpakke med 15 forslag (hvoraf førtidspensionsstramning er én komponent) estimeres at øge arbejdsudbuddet med 24.000 fuldtidspersoner. Kritikere (Dansk Socialrådgiverforening, FOA) advarer mod, at midlertidiggørelse kan presse unge med psykiske lidelser og udsatte tilbage i et system de ikke kan fungere i.",
     "kilde": "NB Beskæftigelse (17. marts 2026): Venstre vil lave ny førtidspensionsreform — unge skal have midlertidig ydelse",
     "kilde_url": "https://www.nb-beskaeftigelse.dk/2026/03/17/venstre-vil-lave-ny-foertidspensionsreform-unge-skal-have-midlertidig-ydelse",
-    "politisk_support": ["Venstre", "Konservative", "Moderaterne", "Liberal Alliance", "Dansk Arbejdsgiverforening", "Dansk Industri", "Radikale Venstre (egen variant — 'fremtidspension')"],
-    "politisk_modstand": ["Socialdemokratiet", "SF", "Enhedslisten", "Dansk Socialrådgiverforening", "FOA"],
-    "kontroversgrad": 4
+    "politisk_support": [
+      "Venstre",
+      "Konservative",
+      "Moderaterne",
+      "Liberal Alliance",
+      "Dansk Arbejdsgiverforening",
+      "Dansk Industri",
+      "Radikale Venstre (egen variant — 'fremtidspension')"
+    ],
+    "politisk_modstand": [
+      "Socialdemokratiet",
+      "SF",
+      "Enhedslisten",
+      "Dansk Socialrådgiverforening",
+      "FOA"
+    ],
+    "kontroversgrad": 4,
+    "kilde_type": "interesseret"
   },
   {
     "id": "seniorpraemie-forhoej",
@@ -267,8 +624,20 @@
     "usikkerhed": "Beskæftigelsesministeriets pressemeddelelse om forhøjelsen indeholder ikke et offentligt fuldtidspersons-estimat. Som baseline er antallet af lønmodtagere over folkepensionsalderen steget med 18.500 siden januar 2023, og ca. 10.000 pensionister vender hvert år tilbage til arbejdsmarkedet. Fagbevægelsens Hovedorganisation kritiserer ordningen som fordelingsmæssigt skæv (gavner primært dem med god arbejdsevne og høj indkomst). En isoleret beregning af effekten af yderligere forhøjelse foreligger ikke offentligt.",
     "kilde": "Beskæftigelsesministeriet (oktober 2025): Markant forhøjelse af den skattefri seniorpræmie",
     "kilde_url": "https://bm.dk/nyheder/pressemeddelelser/2025/10/markant-forhoejelse-af-den-skattefri-seniorpraemie",
-    "politisk_support": ["Venstre", "Konservative", "Moderaterne", "Liberal Alliance", "Dansk Arbejdsgiverforening", "Dansk Industri", "Socialdemokratiet"],
-    "politisk_modstand": ["Fagbevægelsens Hovedorganisation", "Enhedslisten"],
-    "kontroversgrad": 2
+    "politisk_support": [
+      "Venstre",
+      "Konservative",
+      "Moderaterne",
+      "Liberal Alliance",
+      "Dansk Arbejdsgiverforening",
+      "Dansk Industri",
+      "Socialdemokratiet"
+    ],
+    "politisk_modstand": [
+      "Fagbevægelsens Hovedorganisation",
+      "Enhedslisten"
+    ],
+    "kontroversgrad": 2,
+    "kilde_type": "ministeriel"
   }
 ]

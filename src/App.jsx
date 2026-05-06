@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import reformer from './data/reforms.json'
 import ReformCatalog from './components/ReformCatalog.jsx'
 import SelectedReforms from './components/SelectedReforms.jsx'
@@ -6,12 +6,42 @@ import EffectSummary from './components/EffectSummary.jsx'
 import EffectChart from './components/EffectChart.jsx'
 import ReformModal from './components/ReformModal.jsx'
 import MetodeModal from './components/MetodeModal.jsx'
+import Pakker from './components/Pakker.jsx'
 import { sumEffect } from './utils/calculations.js'
 
+const REFORM_IDS = new Set(reformer.map((r) => r.id))
+
+function læsIdsFraUrl() {
+  if (typeof window === 'undefined') return []
+  const params = new URLSearchParams(window.location.search)
+  const r = params.get('r')
+  if (!r) return []
+  return r.split(',').filter((id) => REFORM_IDS.has(id))
+}
+
+function skrivIdsTilUrl(ids) {
+  if (typeof window === 'undefined') return
+  const params = new URLSearchParams(window.location.search)
+  if (ids.length > 0) {
+    params.set('r', ids.join(','))
+  } else {
+    params.delete('r')
+  }
+  const qs = params.toString()
+  const newUrl = `${window.location.pathname}${qs ? '?' + qs : ''}${window.location.hash}`
+  window.history.replaceState({}, '', newUrl)
+}
+
 export default function App() {
-  const [valgteIds, setValgteIds] = useState([])
+  const [valgteIds, setValgteIds] = useState(() => læsIdsFraUrl())
   const [åbenReform, setÅbenReform] = useState(null)
   const [åbenMetode, setÅbenMetode] = useState(false)
+  const [delingsBesked, setDelingsBesked] = useState(null)
+
+  // Sync state -> URL (replaceState, ingen history-spam)
+  useEffect(() => {
+    skrivIdsTilUrl(valgteIds)
+  }, [valgteIds])
 
   function toggleReform(id) {
     setValgteIds((prev) =>
@@ -23,13 +53,37 @@ export default function App() {
     setValgteIds([])
   }
 
-  const valgteReformer = useMemo(
+  function indlæsPakke(pakke) {
+    setValgteIds(pakke.reform_ids.filter((id) => REFORM_IDS.has(id)))
+  }
+
+  async function delLink() {
+    const url = window.location.href
+    try {
+      await navigator.clipboard.writeText(url)
+      setDelingsBesked('Link kopieret til udklipsholder')
+    } catch {
+      setDelingsBesked(url)
+    }
+    setTimeout(() => setDelingsBesked(null), 2500)
+  }
+
+  // Reformer i pakken — alle (incl. dem uden effekttal, til visning)
+  const valgteReformerAlle = useMemo(
     () =>
       valgteIds
         .map((id) => reformer.find((r) => r.id === id))
-        .filter(Boolean)
-        .filter((r) => typeof r.arbejdsudbud_fuldtidspersoner === 'number'),
+        .filter(Boolean),
     [valgteIds],
+  )
+
+  // Reformer brugt til beregninger og diagram (kun med effekttal)
+  const valgteReformer = useMemo(
+    () =>
+      valgteReformerAlle.filter(
+        (r) => typeof r.arbejdsudbud_fuldtidspersoner === 'number',
+      ),
+    [valgteReformerAlle],
   )
 
   const sumArbejdsudbud = sumEffect(valgteReformer, 'arbejdsudbud_fuldtidspersoner')
@@ -62,6 +116,15 @@ export default function App() {
           <div className="flex items-center gap-3 text-[12px]">
             <button
               type="button"
+              onClick={delLink}
+              disabled={valgteIds.length === 0}
+              className="rounded border border-ink px-2.5 py-1 text-ink hover:bg-ink hover:text-white disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-ink"
+              title="Kopiér link til denne pakke"
+            >
+              Del pakke
+            </button>
+            <button
+              type="button"
               onClick={() => setÅbenMetode(true)}
               className="text-ink-muted hover:text-ink underline underline-offset-2"
             >
@@ -75,6 +138,11 @@ export default function App() {
             </a>
           </div>
         </div>
+        {delingsBesked && (
+          <div className="bg-emerald-50 border-t border-emerald-200 text-[12px] text-emerald-900 px-6 py-1.5 text-center">
+            {delingsBesked}
+          </div>
+        )}
       </header>
 
       <main className="flex-1 max-w-[1400px] w-full mx-auto px-6 py-6">
@@ -103,8 +171,10 @@ export default function App() {
               />
             </div>
 
+            <Pakker valgteIds={valgteIds} onIndlæsPakke={indlæsPakke} />
+
             <SelectedReforms
-              valgteReformer={valgteReformer}
+              valgteReformer={valgteReformerAlle}
               onToggle={toggleReform}
               onRydAlle={rydAlle}
             />
@@ -127,10 +197,10 @@ export default function App() {
       <footer className="border-t border-rule bg-white/50 mt-4">
         <div className="max-w-[1400px] mx-auto px-6 py-3 flex items-center justify-between text-[11px] text-ink-soft">
           <span>
-            Reformtracker v0.1 · {reformer.length} reformer i kataloget
+            Reformtracker v0.2 · {reformer.length} reformer i kataloget
           </span>
           <span>
-            Data opdateret april 2026 · kildehenvisninger per reform
+            Data opdateret maj 2026 · kildehenvisninger per reform
           </span>
         </div>
       </footer>

@@ -1,0 +1,57 @@
+[
+  {
+    "id": "rod-pakke",
+    "navn": "S' rød pakke (FV2026)",
+    "kort_beskrivelse": "Socialdemokratiets centrale udspil i regeringsforhandlingerne — formueskat, udvidet Arne-pension og omlægning af pensionsbeskatning.",
+    "farve": "#BE123C",
+    "reform_ids": [
+      "formueskat-05pct",
+      "arne-pension-udvid",
+      "pensionsbeskatning-omlaeg"
+    ],
+    "kilde": "S' valgudspil og pensionsudspil 2026 (sammenstillet via AE-Rådets analyse marts 2026)"
+  },
+  {
+    "id": "blaa-pakke",
+    "navn": "V/KF/M's blå pakke (FV2026)",
+    "kort_beskrivelse": "Blå bloks reformkurs i regeringsforhandlingerne — skattelettelser, øgede arbejdsudbudsincitamenter og strammere adgang til offentlige ydelser.",
+    "farve": "#0F4C75",
+    "reform_ids": [
+      "topskat-afskaf",
+      "beskaeftigelsesfradrag-forhoej",
+      "efterloen-afskaf",
+      "foertidspension-midlertidig",
+      "seniorpraemie-forhoej",
+      "beloebsordning-sup-375k"
+    ],
+    "kilde": "V/KF/M's valgudspil 2026 og DA's reformprogram (sammenstillet)"
+  },
+  {
+    "id": "da-pakke",
+    "navn": "DA's reformpakke",
+    "kort_beskrivelse": "Dansk Arbejdsgiverforenings reformprogram til regeringsgrundlaget — fokus på seniorer, førtidspension og international rekruttering.",
+    "farve": "#155E75",
+    "reform_ids": [
+      "foertidspension-midlertidig",
+      "seniorpraemie-forhoej",
+      "modregning-afskaf",
+      "beskaeftigelsesfradrag-forhoej",
+      "beloebsordning-sup-375k",
+      "positivliste-faglaert"
+    ],
+    "kilde": "Dansk Arbejdsgiverforening (april 2026): Nyt regeringsgrundlag skal øge arbejdsudbuddet"
+  },
+  {
+    "id": "svm-2030",
+    "navn": "Regeringens 2030-plan (SVM-baseline)",
+    "kort_beskrivelse": "De vedtagne arbejdsudbudsreformer fra SVM-regeringen som referencepunkt — det grundlag forhandlingerne i 2026 bygger ovenpå.",
+    "farve": "#7C3AED",
+    "reform_ids": [
+      "kandidat-1aarig",
+      "beloebsordning-sup-375k",
+      "modregning-afskaf",
+      "beskaeftigelsesfradrag-forhoej"
+    ],
+    "kilde": "SVM-regeringens reformpakker 2023-2025 (kandidatreformen, international rekruttering, modregning, personskattereform)"
+  }
+]
